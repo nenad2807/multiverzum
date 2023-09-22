@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Inbox - multiverzum.com{% endblock %}
+
+{% block content %}
+
+
+<style>
+  .send-button-container {
+    width: 35px;
+    height: 35px;
+  }
+
+  #send-button {
+    font-size: 15pt;
+  }
+</style>
+
+
+
+<div class="container mt-1">
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4 p-0 pr-1">
+
+      {% block contacts %}
+      {% include 'inbox-contacts.html' %}
+      {% endblock %}
+
+    </div>
+    <div class="col-md-8 p-0 d-none d-md-block">
+
+      <div class="bg-app h-100 d-flex align-items-center" id="chat2">
+
+        <div class="card-body text-center align-items-center" data-mdb-perfect-scrollbar="true" style="position: relative; height: 260px">
+
+          <img src="/static/main/img/icons/messages.png" style="width: 80px; opacity: 0.8;" class="my-3" alt="">
+          
+          <h3>Your Messages</h3>
+          <p class="text-muted">Send private messages to sellers to get more info.</p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

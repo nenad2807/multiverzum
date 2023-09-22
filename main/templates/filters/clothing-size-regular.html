@@ -1,0 +1,41 @@
+<style>
+    button{
+        white-space: nowrap;
+    }
+    .btn:active{
+        background: none !important;
+    }
+</style>
+
+<div class="regular-clothing-size-filter-container text-center py-2">
+    <p class="my-3 text-muted">
+        Select Size
+    </p>
+    <div class="d-flex flex-wrap justify-content-center">
+        <div class="p-1"><a class="size btn bg-gray pointer" id="xs" onclick="changeBackground(this)">XS</a></div>
+        <div class="p-1"><a class="size btn bg-gray pointer" id="s" onclick="changeBackground(this)">S</a></div>
+        <div class="p-1"><a class="size btn bg-gray pointer" id="m" onclick="changeBackground(this)">M</a></div>
+        <div class="p-1"><a class="size btn bg-gray pointer" id="l" onclick="changeBackground(this)">L</a></div>
+        <div class="p-1"><a class="size btn bg-gray pointer" id="xl" onclick="changeBackground(this)">XL</a></div>
+        <div class="p-1"><a class="size btn bg-gray pointer" id="xxl" onclick="changeBackground(this)">2XL</a></div>
+        <div class="p-1"><a class="size btn bg-gray pointer" id="xxxl" onclick="changeBackground(this)">3XL</a></div>
+
+    </div>
+    
+</div>
+
+
+<script>
+    var prevButton = null;
+
+    function changeBackground(button) {
+        if (prevButton !== null) {
+            prevButton.classList.toggle("bg-gray");
+            prevButton.classList.toggle("bg-primary");
+        }
+        button.classList.toggle("bg-gray");
+        button.classList.toggle("bg-primary");
+
+        prevButton = button;
+    }
+</script>

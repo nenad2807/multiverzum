@@ -1,0 +1,45 @@
+<script>
+    $(document).ready(function () {
+        if (localStorage.getItem('visited')) {
+            setTimeout(function() {
+                $('#welcome-modal').modal('show');
+            }, 500);
+            localStorage.setItem('visited', 'true');
+        }
+    });
+
+</script>
+
+
+<div class="modal" id="welcome-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5>Welcome to Multiverzum: Personalize Your World!</h5>
+                <p class="text-justify">With our platform, you can customize various products to make them uniquely yours. Here are a few examples:</p>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="/static/main/img/examples/custom-t-shirt-image-example.png" alt="Example Image 1" class="img-fluid">
+                        <p class="text-center">Customizable T-Shirts</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="/static/main/img/examples/custom-mug-image-example.png" alt="Example Image 2" class="img-fluid">
+                        <p class="text-center">Personalized Mugs</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="/static/main/img/examples/custom-jewelry-image-example.png" alt="Example Image 3" class="img-fluid">
+                        <p class="text-center">Engraved Jewelry</p>
+                    </div>
+                </div>
+
+                <p>Start exploring and create your own unique designs!</p>
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary border-0">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+<style>
+  .inbox-contact-picture {
+    object-fit: cover;
+    width: 65px;
+    height: 65px;
+  }
+
+  .chat-contact {
+    cursor: pointer;
+  }
+
+  .chat-contact:hover {
+    background-color: var(--color-gray);
+  }
+
+  #searchInput{
+    background-color: var(--color-gray);
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+  }
+
+  .dot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0.5rem;
+  }
+</style>
+
+<div class="card bg-app">
+  <div class="card-body p-3 p-sm-1">
+
+    <ul class="list-unstyled mb-0" style="overflow-y: scroll; height: 70vh;">
+
+      <div class="p-2 mb-2">
+        <div class="input-group">
+          <input type="text" id="searchInput" placeholder="Search Users:" class="form-control border-0">
+          <div class="input-group-append">
+            <span class="input-group-text bg-gray border-0">
+              <i class="fas fa-user"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-2" id="searchResults"></div>
+
+      <span class="bold pl-2">Contacts</span>
+      {% for contact in contacts %}
+      <li class="p-2 chat-contact" onclick="window.location = '/chat/direct/{{ contact.user.id }}'">
+        <a class="d-flex justify-content-between">
+          <div class="d-flex flex-row">
+            <div class="pr-2">
+              <img src="{{ contact.user.profile_image.url }}" alt="avatar"
+                class="rounded-circle d-flex inbox-contact-picture align-self-center me-3 shadow-1-strong">
+            </div>
+            <div class="pt-1">
+              <span class="mb-0 d-flex {% if contact.user.id in unread_chats %} bold {% endif %}">{{ contact.user }}
+                {% if contact.user.id in unread_chats %} <div class="dot-container">
+                  <div class="dot"></div>
+                </div>
+                {% endif %}
+              </span>
+              <p class="small text-muted">{{ contact.last_message }}</p>
+            </div>
+          </div>
+          <div class="pt-1">
+            <p class="small text-muted mb-1">{{ contact.last_message_time }} ago</p>
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+      
+    </ul>
+
+  </div>
+</div>
+
+
+
+<script>
+  $(document).ready(function () {
+    var searchInput = $('#searchInput');
+
+    searchInput.on('input', function () {
+      var searchTerm = searchInput.val();
+
+      $.ajax({
+        url: '/api/chat-user-search',
+        method: 'GET',
+        data: { username: searchTerm },
+        success: function (response) {
+          var users = response.users;
+          $('#searchResults').empty();
+
+          for (var i = 0; i < users.length; i++) {
+            var user = users[i];
+            $('#searchResults').append(
+              `
+              <li class="p-2 chat-contact" onclick="window.location = '/chat/direct/`+ user.id + `'">
+                <a class= "d-flex justify-content-between my-2">
+                  <div class="d-flex flex-row">
+                    <div class="pr-2">
+                      <img src="`+ user.profile_image + `" alt="avatar"
+                        class="rounded-circle d-flex inbox-contact-picture align-self-center me-3 shadow-1-strong">
+                    </div>
+                  <div class="pt-1">
+                    <p class="fw-bold mb-0 bold">`+ user.username + `</p>
+                    <p class="small text-muted">`+ user.first_name + " " + user.last_name + `</p>
+                  </div>
+                  </div>
+                </a>
+              </li>
+        `
+            );
+
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error(error);
+        }
+      });
+    });
+  });
+</script>

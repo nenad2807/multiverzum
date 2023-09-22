@@ -1,0 +1,139 @@
+<footer class="footer bg-app shadow-lg mt-5 p-4 bg-gradient">
+  <div class="container bg-transparent">
+
+    <div class="row py-4">
+      <div class="col-md-7">
+        <h4 class="bold">
+          Sign up to our newsletter
+        </h4>
+        <span>
+          Stay up to date with the latest news, announcements and articles.
+        </span>
+      </div>
+      <div class="col-md-5">
+        <form action="/user/mailing-list/add-email" method="POST" id="email-subscription-form">
+          <div class="d-flex">
+            {% csrf_token %}
+            <input type="email" class="form-control bg-gray border-0 rounded" name="email"
+              placeholder="Enter your email"
+              required>
+            <button type="submit" class="btn btn-dark ml-2 border-0">Subscribe</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="row my-5">
+      <div class="col-md-4">
+        <div class="d-flex justify-content-center justify-content-md-start">
+          <a href="/" class="footer-site-logo">
+            <img src="/static/main/img/icons/footer-logo-icon.png" width="35px" alt="" loading="lazy">
+          </a>
+          <span class="h4 bold pl-2">multiverzum</span>
+        </div>
+
+        <p class="sub-links text-muted mt-3 pr-3">
+          A platform where you can buy high quality items with unique designs.
+          "Out of this world, into the multiverse".
+        </p>
+      </div>
+      <div class="col-md-2">
+        <div class="m-auto menu-wrappers">
+          <h3 class="text-muted bold small">Product</h3>
+          <ul class="list-unstyled links">
+            <li><a class="sub-links bold" href="/explore">Explore</a></li>
+            <li><a class="sub-links bold" href="/explore/top">Trending</a></li>
+            <li><a class="sub-links bold" href="/search_query=accessories">Solutions</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="m-auto menu-wrappers">
+          <h3 class="text-muted bold small">Company</h3>
+          <ul class="list-unstyled links">
+            <li><a class="sub-links bold" href="/about">About us</a></li>
+            <li><a class="sub-links bold" href="/info/about">Team</a></li>
+            <li><a class="sub-links bold" href="/info/FAQ">FAQ</a></li>
+            <li><a class="sub-links bold" href="/info/support">Support</a></li>
+            <li><a class="sub-links bold" href="/info/support/send-message">Ask a question</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="m-auto menu-wrappers">
+          <h3 class="text-muted bold small">Social</h3>
+          <ul class="list-unstyled links">
+            <li><a class="sub-links bold" href="https://www.facebook.com/profile.php?id=100087170046211">Facebook</a>
+            </li>
+            <li><a class="sub-links bold" href="https://www.instagram.com/multiverzum_com/">Instagram</a></li>
+            <li><a class="sub-links bold"
+                href="https://mail.google.com/mail/u/0/#inbox?compose=VpCqJWHcvpMpBkWcNLJHQZDfwTfdQfBNfBJJkfNLLfqXgvMWwQtmfCdRKBrKfmTrccrPdLv">Gmail</a>
+            </li>
+            <li><a class="sub-links bold" href="https://www.linkedin.com/in/multiverzum/">Linkedin</a></li>
+            <li><a class="sub-links bold" href="#">+387 66 934 835</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="m-auto menu-wrappers">
+          <h3 class="text-muted bold small">Legal</h3>
+          <ul class="list-unstyled links">
+            <li><a class="sub-links bold" href="/info/terms-of-service">Terms</a></li>
+            <li><a class="sub-links bold" href="/info/privacy-policy">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="text-muted">
+    <div class="row">
+      <span class="text-muted">
+        &copy; 2023 multiverzum. All rights reserved.
+      </span>
+      <div class="icon-container footer-brand-icons d-flex ml-auto">
+        <div class="px-2"><a
+            href="https://mail.google.com/mail/u/0/#inbox?compose=VpCqJWHcvpMpBkWcNLJHQZDfwTfdQfBNfBJJkfNLLfqXgvMWwQtmfCdRKBrKfmTrccrPdLv">
+            <i class="fa-brands fa-google"></i>
+          </a></div>
+
+        <div class="px-2"><a href="https://www.instagram.com/multiverzum_com/">
+            <i class="fa-brands fa-instagram"></i>
+          </a></div>
+        <div class="px-2"><a href="https://www.linkedin.com/in/multiverzum/">
+            <i class="fa-brands fa-linkedin"></i>
+          </a></div>
+        <div class="px-2"><a href="https://www.facebook.com/profile.php?id=100087170046211">
+            <i class="fa-brands fa-facebook"></i>
+          </a></div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</footer>
+
+<script>
+  $('#email-subscription-form').on('submit', function (event) {
+    event.preventDefault();
+    var form_data = $(this).serialize();
+    $.ajax({
+      type: 'POST',
+      url: $(this).attr('action'),
+      data: form_data,
+      success: function (response) {
+        if (response == 'Success') {
+          $('#email-subscription-alert').show();
+          $("#email-subscription-alert").fadeTo(2000, 500).slideUp(500, function () {
+            $("#email-subscription-alert").slideUp(500);
+          });
+        }
+        console.log(response);
+      },
+      error: function (xhr, status, error) {
+        console.log(xhr.responseText);
+      }
+    });
+  });
+
+</script>

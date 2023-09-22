@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% block categories %}
+{% include 'categories.html' %}
+{% endblock %}
+
+<style>
+    .exception-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    h1,
+    p {
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+
+    a.button {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.2s;
+    }
+
+    a.button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+
+<div class="exception-container container d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <div class="card p-4 text-center" style="max-width: 600px;">
+        <h1 class="mb-4">Under Construction</h1>
+        <img src="/static/main/img/icons/gears.svg" class="w-50" style="margin: 0 auto;">
+        <p class="mb-4">This feature is still in development. We apologize for the inconvenience.</p>
+        <a href="/" class="btn btn-primary border-0" style="max-width: 600px;">Go back to homepage</a>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,54 @@
+.chatbot-icon-wrapper {
+    bottom: 25px;
+    right: 15px;
+    z-index: 99999;
+}
+
+.chat-profile-images-div {
+
+    width: 35px;
+    height: 35px;
+}
+
+.chat-profile-images {
+    object-fit: cover;
+    width: 35px;
+    height: 35px;
+}
+
+.msg-gray-bg {
+    background-color: var(--color-gray);
+}
+
+.chat-profile-images-div {
+
+    width: 35px;
+    height: 35px;
+}
+
+.chat-profile-images {
+    object-fit: cover;
+    width: 35px;
+    height: 35px;
+}
+
+.multibot-chat {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.chatbot-container {
+    max-width: 400px;
+    width: 100%;
+    bottom: 90px;
+    right: 15px;
+    z-index: 99998;
+}
+
+@media only screen and (max-device-width : 767px) {
+
+    .chatbot-container {
+        right: 50%;
+        transform: translateX(50%);
+    }
+}

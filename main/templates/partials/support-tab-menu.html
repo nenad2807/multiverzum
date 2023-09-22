@@ -1,0 +1,27 @@
+<style>
+
+    .tab-menu .active{
+        color: var(--color-primary);
+        border-bottom: 3px solid var(--color-primary);
+    }.tab-menu a{
+        font-size: 13pt;
+        color: var(--text-color);
+        text-decoration: none;
+    }
+
+</style>
+
+
+
+<div class="container p-4 pt-5 overflow-auto">
+    <ul class="nav tab-menu justify-content-between overflow-x-auto" style="width: 650px;">
+        <li><a class="bold p-2 py-3 {% if 'about' in request.path %} active{% endif %}" href="/about">Overview</a></li>
+        <li><a class="bold p-2 py-3 {% if 'privacy' in request.path %} active{% endif %}" href="/info/privacy-policy">Privacy Policy</a></li>
+        <li><a class="bold p-2 py-3 {% if 'terms' in request.path %} active{% endif %}" href="/info/terms-of-service">Terms of Service</a></li>
+        <li><a class="bold p-2 py-3 {% if 'support' in request.path %} active{% endif %}" href="/info/support">Support</a></li>
+        <li><a class="bold p-2 py-3 {% if 'FAQ' in request.path %} active{% endif %}" href="/info/FAQ">FAQ</a></li>
+
+    </ul>
+    <hr>
+
+</div>

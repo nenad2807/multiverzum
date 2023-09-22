@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Chat - multiverzum.com{% endblock %}
+
+{% block content %}
+
+
+<style>
+  #send-button {
+    width: 40px;
+    height: 40px;
+    font-size: 15pt;
+  }
+
+  #message-input{
+    height: 40px;
+    background-color: var(--color-gray);
+    color: var(--text-color);
+  }
+
+</style>
+
+
+
+<div class="container mt-1">
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4 p-0 pr-1 d-none d-md-block">
+
+      {% block contacts %}
+      {% include 'inbox-contacts.html' %}
+      {% endblock %}
+
+    </div>
+    <div class="col-md-8 p-0">
+
+      <div class="card bg-app" id="chat2">
+
+        <div class="card-body p-2" id="chat-body" data-mdb-perfect-scrollbar="true"
+          style="position: relative; height: 70vh; overflow-y: scroll;">
+
+          <div id="messages"></div>
+
+        </div>
+        <form action="/chat/send-message" method="POST" id="send-message-form">
+          {% csrf_token %}
+          <div class="card-footer bg-app text-muted d-flex 
+          justify-content-start align-items-center border-0 p-4"
+            style="  box-shadow: 0 -2px 5px rgba(177, 177, 177, 0.5);">
+
+            <input type="hidden" name="receiver" value='{{ receiver.id }}'>
+
+            <input type="text" class="form-control rounded-lg py-3 border-0" autocomplete="off" name="message" id="message-input"
+              placeholder="Type message">
+            <div class="send-button-container d-flex justify-content-center align-items-center pl-2">
+              <button type="submit" id="send-button" class="btn btn-primary d-flex align-items-center justify-content-center border-0 rounded-circle bg-primary">
+                <i class="fa fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+
+  let currentMessageSender;
+  let previousMessageSender;
+  var messagesLoaded = false;
+
+  function updateMessages() {
+    $.ajax({
+      type: 'GET',
+      url: '{% url "getMessages" receiver.id %}',
+      success: function (response) {
+        $('#messages').empty();
+        var messages = response.messages;
+        var messagesDiv = $('#messages');
+        for (var i = 0; i < messages.length; i++) {
+          var message = messages[i];
+          var messageDiv = $('<div>');
+          if (message.sender == '{{ request.user.id }}') {
+
+            previousMessageSender = currentMessageSender;
+            currentMessageSender = '{{ request.user.id }}';
+
+
+            messageDiv.addClass('d-flex flex-row justify-content-end');
+            messageDiv.append($('<div>').append(
+              $('<p>').addClass('small p-2 me-3 mb-1 text-white rounded bg-primary rounded mr-2').text(message.message),
+              $('<p>').addClass('small me-3 mb-3 rounded text-muted d-flex justify-content-end mr-2').text(message.created_at)
+            ));
+
+            var profileImageDiv = $('<div>').addClass('profile-image');
+            profileImageDiv.addClass('chat-profile-images-div')
+            messageDiv.append(profileImageDiv);
+
+            if (previousMessageSender != currentMessageSender) {
+              profileImageDiv.append($('<img>').attr({
+                'src': '{{ request.user.profile_image.url }}',
+                'class': 'rounded-circle chat-profile-images',
+                'alt': 'avatar 1',
+              }));
+            }
+
+
+          } else {
+
+            previousMessageSender = currentMessageSender;
+            currentMessageSender = '{{ receiver.id }}';
+
+            messageDiv.addClass('d-flex flex-row justify-content-start');
+
+            var profileImageDiv = $('<div>').addClass('profile-image');
+            profileImageDiv.addClass('chat-profile-images-div')
+            messageDiv.append(profileImageDiv);
+
+            if (previousMessageSender != currentMessageSender) {
+              profileImageDiv.append($('<img>').attr({
+                'src': '{{ receiver.profile_image.url }}',
+                'class': 'rounded-circle chat-profile-images',
+                'alt': 'avatar 1',
+              }));
+              messageDiv.append(profileImageDiv);
+            }
+
+            messageDiv.append($('<div class="position-relative">').append(
+              $('<p>').addClass('small p-2 ms-3 mb-1 rounded msg-gray-bg ml-2').text(message.message),
+              $('<p>').addClass('small ms-3 mb-3 rounded text-muted message-time ml-2').text(message.created_at)
+            ));
+          }
+          messagesDiv.append(messageDiv);
+        }
+        if (!messagesLoaded) {
+          scrollToBottom();
+          messagesLoaded = true;
+        }
+      },
+      error: function (response) {
+        console.log(response);
+      }
+    });
+  }
+
+  updateMessages();
+
+  setInterval(updateMessages, 3000);
+
+
+</script>
+
+
+
+<script>
+  $(document).ready(function () {
+    $('#send-message-form').submit(function (event) {
+      event.preventDefault();
+
+      var message = $('#message-input').val().trim();
+      playNotificationSound();
+
+      if (message !== '') {
+        $('#send-button').prop('disabled', true);
+
+        $.ajax({
+          type: 'POST',
+          url: '{% url "sendMessage" %}',
+          data: $(this).serialize(),
+          success: function (response) {
+            updateMessages();
+            $('#message-input').val('');
+          },
+          error: function (response) {
+            console.log(response);
+          },
+          complete: function () {
+            $('#send-button').prop('disabled', false);
+          }
+        });
+      }
+    });
+  });
+</script>
+
+
+<script>
+
+  function scrollToBottom() {
+    var chatBody = document.getElementById('chat-body');
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+</script>
+
+
+{% endblock %}

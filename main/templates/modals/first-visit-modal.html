@@ -1,0 +1,129 @@
+<style>
+    .fv-modal-category-container {
+        max-height: 125px;
+        width: auto;
+        object-fit: cover;
+    }
+
+    .fv-modal-category-container img {
+        height: 60px;
+    }
+
+    .fv-modal-category-container.active {
+        border: 2px solid var(--color-primary);
+    }
+
+    .check-icon-wrapper {
+        border-radius: 100%;
+        width: 25px;
+        height: 25px;
+        background-color: var(--color-background-main);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 35px;
+        right: 15px;
+        transform: translate(-50%, -50%);
+    }
+
+    .fa-check {
+        color: var(--color-oposite) !important;
+    }
+</style>
+
+<div id="first-visit-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-app rounded-lg p-2">
+            <div class="modal-body overflow-auto p-3" style="max-height: 80vh;">
+
+                <h4 class="bold">Tell us more about you!</h4>
+                <span class="text-muted">What are you currently looking for?</span><br>
+                <hr>
+                <div class="row">
+                    {% for parent_category, subcategories in grouped_categories.items %}
+
+                    <div class="col-6 p-2">
+                        <div onclick="toggleActiveCard(this, '{{ parent_category.id }}')"
+                            class="fv-modal-category-container h-100 p-3 py-5 d-flex justify-content-center align-items-center rounded-lg bg-gray pointer">
+
+                            <div class="check-icon-wrapper"><i class="fa fa-check"></i></div>
+
+                            <div class="text-center">
+                                <img src="/static/main/img/category_icons/{{ parent_category.name }}.svg" alt="">
+                                <p class="bold m-0">{{ parent_category.name }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <form id="save-category-preference-form">{% csrf_token %}
+                    <button type="button" class="btn btn-basic border rounded-lg" data-bs-dismiss="modal">Skip</button>
+                    <button type="submit" class="btn btn-contrast rounded-lg">Continue</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var selectedPreferredCategories = [];
+    function toggleActiveCard(element, category_id) {
+        element.classList.toggle('active');
+        var checkIcon = element.querySelector('.check-icon-wrapper');
+        checkIcon.classList.toggle('bg-primary');
+        if (!selectedPreferredCategories.includes(category_id)) {
+            selectedPreferredCategories.push(category_id);
+        } else {
+            selectedPreferredCategories.pop(category_id);
+        }
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    $('#save-category-preference-form').on('submit', function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            url: '/user/save-category-preference-info',
+            data: { 'selectedPreferredCategories': JSON.stringify(selectedPreferredCategories) },
+            success: function (response) {
+                location.reload();
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+      $('#first-visit-modal').modal('show');
+    })
+  </script>

@@ -1,0 +1,14 @@
+footer{
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+.menu-wrappers{
+    width: fit-content;
+}.sub-links{
+    color: var(--text-color);
+}
+
+.footer-brand-icons svg{
+    font-size: 25px;
+    color: var(--text-color);
+}
