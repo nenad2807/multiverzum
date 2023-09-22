@@ -1,0 +1,181 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>{% block title %}multiverzum.com - authentication{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}?rnd=33">
+    <link rel="shortcut icon" type="image/jpg" href="/static/main/img/icons/favicon.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <meta name="msapplication-TileImage" content="https://multiverzum.com/static/main/img/icons/thumbnail.jpg" />
+    <meta property="og:site_name" content="Multiverzum" />
+    <meta property="og:title" content="multiverzum.com - Create an account" />
+    <meta property="og:description" content="Thousands of items at your disposal" />
+    <meta property="og:image" itemprop="image"
+        content="{% block og_image %}https://multiverzum.com/static/main/img/icons/thumbnail.jpg{% endblock %}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="629" />
+    <meta property="fb:app_id" content="1487782268378153">
+    <meta property="og:url" content="www.multiverzum.com" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 2000px !important;
+        }
+
+        .bgc-primary {
+            background-color: var(--color-primary) !important;
+            background: linear-gradient(180deg, var(--color-primary) 50%, #2a9992 100%);
+        }
+
+        .title {
+            font-size: 33pt;
+            text-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
+        }
+
+        #alreadyHaveAccount {
+            font-size: 18pt;
+            text-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
+        }
+
+        #login-btn {
+            border: 1px solid #12161F;
+            border-radius: 30px;
+            width: 135px;
+            height: 60px;
+            font-size: 18pt;
+        }
+
+        .signup {
+            line-height: 80px;
+            font-size: 35pt;
+        }
+
+        .form-control {
+            border: none;
+        }
+
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        input[type=checkbox] {
+            accent-color: rgba(255, 255, 255, 0);
+        }
+
+        .social-icons {
+            max-width: 250px;
+        }
+
+
+        .social-icons div svg {
+            height: 45px;
+            width: 45px;
+            border-radius: 100%;
+            border: 1px solid rgba(18, 22, 31, 0.5);
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .social-icons div svg:hover {
+            background-color: var(--body-background);
+        }
+
+        .form-check-input {
+            border: 2px solid rgba(18, 22, 31, 0.5);
+            border-radius: 2px;
+        }
+
+        #remember-me {
+            width: 20px;
+            height: 20px;
+        }
+
+        .inputContainer {
+            position: relative;
+        }
+
+        .inputContainer .svg-icon {
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+        }
+
+        .inputContainer .form-control {
+            padding-left: 34px !important;
+        }
+
+        .modal-dialog {
+            max-width: none;
+        }
+
+        .inputContainer .svg-icon {
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+        }
+
+        .inputContainer .form-control {
+            padding-left: 34px !important;
+        }
+
+        form {
+            width: 85%;
+        }
+
+        .google-btn {
+            width: 100%;
+            height: 42px;
+            display: flex;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e2e2;
+        }
+
+        .social-signup-button-icon {
+            max-width: 18px;
+            max-height: 18px;
+        }
+
+        @media screen and (max-width: 800px) {
+            form {
+                max-width: unset;
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    {% block content %}
+
+    {% endblock %}
+
+
+</body>
+
+</html>

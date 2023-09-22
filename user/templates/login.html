@@ -1,0 +1,150 @@
+{% extends 'authBase.html' %}
+{% block title %}Login - multiverzum.com{% endblock %}
+
+{% block content %}
+
+<div class="container h-100" style="min-height: 100vh !important; max-width: 3000px !important;">
+
+    <div class="row h-100">
+
+
+        <div
+        class="col-md-7 left-section d-none d-md-flex d-lg-flex bgc-primary h-100 flex-column justify-content-center">
+        <div class="content text-center">
+                <img src="/static/main/img/illustrations/login-ilustration.png" style="max-width: 520px;"
+                    class="m-auto d-block" alt="">
+            </div>
+        </div>
+
+        <div class="col-md-5 h-100 d-flex flex-column justify-content-center">
+            <div class="content">
+
+                <img src="/static/main/img/icons/logo-icon.png" class="d-block d-sm-none m-auto d-block pb-5" style="max-width: 100px;" alt="" srcset="">
+
+                <form class="m-auto" action="#" method="POST">{% csrf_token %}
+                    <h1 class="signup m-0 bold">
+                        Login
+                    </h1>
+                    <span class="small text-muted">Please enter your login details to sign in.</span>
+                    <div class="inputContainer py-1 mt-4">
+                        <input class="form-control w-100 my-2" type="text" placeholder="email" name="email">
+                        <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                    <path
+                                        d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                        fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                    <path
+                                        d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                        fill="#000000" fill-rule="nonzero" />
+                                </g>
+                            </svg></span>
+                    </div>
+
+                    <div class="inputContainer py-1">
+
+                        <input class="form-control w-100 my-2" type="password" placeholder="Password" name="password" id="inputpass"
+                            required>
+                        <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <mask fill="white">
+                                        <use xlink:href="#path-1" />
+                                    </mask>
+                                    <g />
+                                    <path
+                                        d="M7,10 L7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 L17,10 L18,10 C19.1045695,10 20,10.8954305 20,12 L20,18 C20,19.1045695 19.1045695,20 18,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,12 C4,10.8954305 4.8954305,10 6,10 L7,10 Z M12,5 C10.3431458,5 9,6.34314575 9,8 L9,10 L15,10 L15,8 C15,6.34314575 13.6568542,5 12,5 Z"
+                                        fill="#000000" />
+                                </g>
+                            </svg></span>
+                                    <span onclick=showPassword()>
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x  offset-11 offset-md-10 offset-lg-10 offset-xl-11">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" id="hidepass" class="bi bi-eye-slash" style="cursor: pointer; padding-right:2px;" viewBox="0 0 16 16">    
+                                                <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+                                                <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+                                                <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" id="showpass" style="display: none; cursor:pointer; padding-right:2px;" viewBox="0 0 16 16">
+                                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                            </svg>
+                                        </span>
+                                    </span>
+                    </div>
+
+                    {% for field in login_form %}
+                    <p>
+                        {% for error in field.errors %}
+                    <p class="text-danger">
+                        {{ error }}
+                    </p>
+                    {% endfor %}
+                    </p>
+                    {% endfor %}
+
+                    {% if login_form.non_field_errors %}
+                    <div class="text-danger">
+                        <p>{{login_form.non_field_errors}}</p>
+                    </div>
+                    {% endif %}
+
+                    <button type="submit" id="sign-up-btn" class="btn btn-primary border-0 rounded-lg w-100 my-3 py-2">
+                        Log In
+                    </button>
+
+                    <span class="text-muted small">Don't have an account? <a href="/user/register">Sign up</a></span>
+
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0">or</p>
+                    </div>
+
+                    <div class="d-flex m-auto justify-content-between">
+
+                        <a href="{% url 'social:begin' 'google-oauth2' %}" class="google-btn mb-4 justify-content-center align-items-center">
+                            <div class="pr-3">
+                                <img class="social-signup-button-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                            </div>
+                            <span class="btn-text text-dark">Continue with google</span>
+                        </a>
+
+
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    function showPassword(){
+        let inputfield = document.querySelector('#inputpass');
+        let show = document.querySelector('#showpass');
+        let hide = document.querySelector('#hidepass');
+
+        if(inputfield.type==='password'){
+            inputfield.type = 'text';
+            show.style.display = 'block';
+            hide.style.display = 'none';
+        }
+        else{
+            inputfield.type = 'password';
+            show.style.display = 'none';
+            hide.style.display = 'block';
+        }
+    }
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+{% endblock %}

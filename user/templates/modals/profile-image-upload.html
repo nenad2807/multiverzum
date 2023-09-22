@@ -1,0 +1,53 @@
+<div class="modal fade" id="uploadProfileImageModal" tabindex="-1" role="dialog"
+    aria-labelledby="uploadProfileImageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadProfileImageModalLabel">Upload a New Profile Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="text-center">
+                    <img src="{{ request.user.profile_image.url }}" alt="avatar" id="preview" class="img-fluid"
+                        style="width: 180px; height: 180px; object-fit: cover;">
+                    </img>
+                </div>
+
+                <form method="POST" action="/user/update-profile-image" enctype="multipart/form-data" id="profileImageForm" class="text-center">
+                    {% csrf_token %}
+                    <div class="form-group py-2 m-0">
+                        <label for="id_image">Select an Image:</label>
+                        <input type="file" class="form-control-file" id="id_image" name="image"
+                            onchange="previewImage(event)" accept="image/*" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" form="profileImageForm" class="btn btn-primary border-0">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+function previewImage(event) {
+  var input = event.target;
+  var reader = new FileReader();
+
+  reader.onload = function(){
+    var dataURL = reader.result;
+    var img = document.getElementById("preview");
+    img.src = dataURL;
+  };
+
+  reader.readAsDataURL(input.files[0]);
+}
+
+
+</script>

@@ -1,0 +1,300 @@
+{% extends 'authBase.html' %}
+{% block title %}Register - multiverzum.com{% endblock %}
+
+{% block content %}
+
+<style>
+    .nav-tabs {
+        border-bottom: none;
+    }
+
+    .nav-tabs .nav-link {
+        border: none;
+        border-bottom: 2px solid transparent;
+        color: #333;
+    }
+
+    .nav-tabs .nav-link.active {
+        border-color: #333;
+        font-weight: bold;
+    }
+</style>
+
+
+<div class="container" style="min-height: 100vh !important; max-width: 3000px !important;">
+    <div class="row h-100">
+        <div class="col-md-7 left-section d-none d-md-flex d-lg-flex bgc-primary flex-column justify-content-center">
+            <div class="content text-center">
+                <img src="/static/main/img/illustrations/login-ilustration.png" style="max-width: 520px;"
+                    class="m-auto d-block" alt="">
+            </div>
+        </div>
+
+        <div class="col-md-5 h-100 d-flex flex-column justify-content-center">
+            <div class="content">
+
+                <img src="/static/main/img/icons/logo-icon.png" class="d-block d-sm-none m-auto d-block pt-4" style="max-width: 100px;" alt="" srcset="">
+
+
+                <form class="m-auto" action="#" method="POST">{% csrf_token %}
+                    <h1 class="signup m-0 bold mt-5 text-center">
+                        Sign Up
+                    </h1>
+
+                    <ul class="nav nav-tabs justify-content-around mt-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#section1" id="basic-tab">Basic Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#section2" id="seller-tab">Seller Profile</a>
+                        </li>
+                    </ul>
+                    
+
+                    <div class="tab-content mt-2">
+                        <div class="tab-pane fade show active" id="section1">
+
+
+                        </div>
+
+                        <div class="tab-pane fade" id="section2">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="inputContainer py-1">
+                                        <input class="form-control w-100 my-2" type="text" placeholder="First Name"
+                                            name="first_name">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x"><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                    <path
+                                                        d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                                        fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                    <path
+                                                        d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                                        fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="inputContainer py-1">
+                                        <input class="form-control w-100 my-2" type="text" placeholder="Last Name"
+                                            name="last_name">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2x"><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                    <path
+                                                        d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                                        fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                    <path
+                                                        d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                                        fill="#000000" fill-rule="nonzero" />
+                                                </g>
+                                            </svg></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="inputContainer py-1">
+                        <input class="form-control w-100 my-2" type="email" placeholder="Email" name="email" required>
+                        <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24" />
+                                    <path
+                                        d="M5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,17 C21,18.1045695 20.1045695,19 19,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z"
+                                        fill="#000000" />
+                                </g>
+                            </svg></span>
+                    </div>
+
+                    <div class="inputContainer py-1">
+                        <input class="form-control w-100 my-2" type="text" placeholder="Username" name="username"
+                            required>
+                        <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                    <path
+                                        d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                        fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                    <path
+                                        d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                        fill="#000000" fill-rule="nonzero" />
+                                </g>
+                            </svg></span>
+                    </div>
+
+                    <div class="inputContainer py-1">
+
+                        <input class="form-control w-100 my-2" type="password" placeholder="Password" name="password1"
+                            id="inputpass" required>
+                        <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <mask fill="white">
+                                        <use xlink:href="#path-1" />
+                                    </mask>
+                                    <g />
+                                    <path
+                                        d="M7,10 L7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 L17,10 L18,10 C19.1045695,10 20,10.8954305 20,12 L20,18 C20,19.1045695 19.1045695,20 18,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,12 C4,10.8954305 4.8954305,10 6,10 L7,10 Z M12,5 C10.3431458,5 9,6.34314575 9,8 L9,10 L15,10 L15,8 C15,6.34314575 13.6568542,5 12,5 Z"
+                                        fill="#000000" />
+                                </g>
+                            </svg></span>
+                        <span onclick=showPassword()>
+                            <span
+                                class="svg-icon svg-icon-primary svg-icon-2x  offset-11 offset-md-10 offset-lg-10 offset-xl-11">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    id="hidepass" class="bi bi-eye-slash" style="cursor: pointer; padding-right:2px;"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
+                                    <path
+                                        d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
+                                    <path
+                                        d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-eye" id="showpass"
+                                    style="display: none; cursor:pointer; padding-right:2px;" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                    <path
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                </svg>
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="inputContainer py-1">
+
+                        <input class="form-control w-100 my-2" type="password" placeholder="Repeat password"
+                            name="password2" required>
+                        <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                viewBox="0 0 24 24" version="1.1">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <mask fill="white">
+                                        <use xlink:href="#path-1" />
+                                    </mask>
+                                    <g />
+                                    <path
+                                        d="M7,10 L7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 L17,10 L18,10 C19.1045695,10 20,10.8954305 20,12 L20,18 C20,19.1045695 19.1045695,20 18,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,12 C4,10.8954305 4.8954305,10 6,10 L7,10 Z M12,5 C10.3431458,5 9,6.34314575 9,8 L9,10 L15,10 L15,8 C15,6.34314575 13.6568542,5 12,5 Z"
+                                        fill="#000000" />
+                                </g>
+                            </svg></span>
+                    </div>
+
+                    <input type="hidden" name="is_seller" id="is_seller_hidden_value">
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="userAgreementCheckbox" required>
+                            <label class="form-check-label" for="userAgreementCheckbox">
+                                I agree to the <a href="/info/terms-of-service" target="_blank">Terms of Service</a>.
+                            </label>
+                        </div>
+                    </div>
+
+
+
+                    {% for field in registration_form %}
+                    <p>
+                        {% for error in field.errors %}
+                    <p class="text-danger">
+                        {{ error }}
+                    </p>
+                    {% endfor %}
+                    </p>
+                    {% endfor %}
+
+                    {% if registration_form.non_field_errors %}
+                    <div class="text-danger">
+                        <p>{{registration_form.non_field_errors}}</p>
+                    </div>
+                    {% endif %}
+
+                    <button type="submit" id="sign-up-btn" class="btn btn-primary border-0 rounded-lg w-100 my-3 py-2">
+                        Sign Up
+                    </button>
+
+                    <span class="text-muted small">Already have an account? <a href="/user/login">Login</a></span>
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0">or</p>
+                    </div>
+
+                    <div class="d-flex m-auto justify-content-between">
+
+                        <a href="{% url 'social:begin' 'google-oauth2' %}" class="google-btn mb-4 justify-content-center align-items-center">
+                            <div class="pr-3">
+                                <img class="social-signup-button-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                            </div>
+                            <span class="btn-text text-dark">Continue with google</span>
+                        </a>
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+    var basicTab = document.getElementById("basic-tab");
+    var sellerTab = document.getElementById("seller-tab");
+
+    basicTab.addEventListener("click", function() {
+        document.getElementById("is_seller_hidden_value").value = 0;
+    });
+
+    sellerTab.addEventListener("click", function() {
+        document.getElementById("is_seller_hidden_value").value = 1;
+    });
+});
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+<script>
+    function showPassword() {
+        let inputfield = document.querySelector('#inputpass');
+        let show = document.querySelector('#showpass');
+        let hide = document.querySelector('#hidepass');
+
+        if (inputfield.type === 'password') {
+            inputfield.type = 'text';
+            show.style.display = 'block';
+            hide.style.display = 'none';
+        }
+        else {
+            inputfield.type = 'password';
+            show.style.display = 'none';
+            hide.style.display = 'block';
+        }
+    }
+</script>
+
+{% endblock %}
