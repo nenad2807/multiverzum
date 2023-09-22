@@ -1,0 +1,36 @@
+<nav class="categories-menu-package categories-nav default">
+
+        <ul class="categories" id="categoriesLayout">
+                {% for parent_category, subcategories in grouped_categories.items %}
+                <li
+                        class="dropdown mb-2{% if '/explore/category/' in request.path and parent_category.name in request.path %} category-nav-link-active{% endif %}">
+                        <a class="nav-link categories-nav-link" href="/explore/category/{{ parent_category.name }}">
+                                {{ parent_category.name }}</a>
+                        <ul class="dropdown-menu bg-app p-3 shadow-sm dropdown-menu-end position-absolute border-0">
+
+                                {% for subcategory in subcategories %}
+
+                                <li><a class="dropdown-item pr-5"
+                                                href="/search_query={{ subcategory.name }}">
+                                                {{ subcategory.name }}</a></li>
+                                {% endfor %}
+
+                        </ul>
+                </li>
+                {% endfor %}
+        </ul>
+
+        <script>
+                const dropdowns = document.querySelectorAll('.dropdown');
+                dropdowns.forEach(dropdown => {
+                        dropdown.addEventListener('mouseenter', () => {
+                                dropdown.querySelector('.dropdown-menu').classList.add('show');
+                        });
+                        dropdown.addEventListener('mouseleave', () => {
+                                dropdown.querySelector('.dropdown-menu').classList.remove('show');
+                        });
+                });
+        </script>
+
+
+</nav>

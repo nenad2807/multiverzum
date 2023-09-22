@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Send Support Message - multiverzum.com{% endblock %}
+
+{% block content %}
+
+
+<div class="w-100 mt-1">
+
+
+    {% block support-tab-menu %}
+    {% include 'partials/support-tab-menu.html' %}
+    {% endblock %}
+
+
+    <div class="container px-4 py-2">
+          
+        <section id="contact" class="container rounded-lg p-5" style="background-color: var(--color-background-main) !important;">
+            <h2>Ask a question</h2>
+            <p class="text-muted">We usually reply within 12 hours of sending the message.</p>
+            <br>
+            <form method="POST" id="send-support-message-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" class="form-control border-0" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" name="email" class="form-control border-0" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control border-0" name="message" id="message" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary border-0">Submit</button>
+            </form>
+        </section>
+
+    </div>
+</div>
+
+
+{% endblock %}

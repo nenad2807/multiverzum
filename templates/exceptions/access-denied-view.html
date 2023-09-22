@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% block categories %}
+{% include 'categories.html' %}
+{% endblock %}
+
+<style>
+    .exception-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    button {
+        width: fit-content;
+    }
+</style>
+
+
+<div class="exception-container container d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <div class="card p-4 text-center" style="max-width: 600px;">
+        <img src="/static/main/img/illustrations/error.png" class="w-50" style="margin: 0 auto;">
+        <h2 class="bold">Access Denied</h2>
+
+        <p class="text-muted">
+            This page is meant only for sellers. Create a seller profile to be able to access this page and
+            publish items.
+        </p>
+        <button onclick="window.location = '/'" class="btn btn-primary m-auto border-0 rounded-lg">Return Home</button>
+    </div>
+</div>
+
+
+{% endblock %}

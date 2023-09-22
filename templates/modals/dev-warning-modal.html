@@ -1,0 +1,25 @@
+<div class="modal fade" style="max-width: 800px; left: 50%; transform: translateX(-50%);" id="devModal" tabindex="-1"
+    role="dialog" aria-labelledby="devModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-app">
+            <div class="modal-header">
+                <h5 class="modal-title bg-warning" id="devModalLabel">Website Under Development!</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>This website is currently under development. You can not make purchases yet! Please check back soon for updates.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#devModal').modal('show');
+    });
+</script>
