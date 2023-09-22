@@ -1,0 +1,221 @@
+{% extends 'admin-base.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard - multiverzum.com{% endblock %}
+
+{% block content %}
+
+<div class="container mt-2">
+
+    <div class="p-3">
+        <h2 class="bold">Dashboard Overview</h2>
+        <span class="text-muted">Hi {{ request.user.username }}, Welcome back!</span>
+    </div>
+
+
+    <div class="row p-3">
+        <div class="col-md-3">
+            <div class="card bg-app border rounded-lg">
+                <div class="d-flex h-100 align-items-center p-2">
+
+                    <div class="w-100 pl-4 justify-content-center align-items-center p-2">
+                        <p class="m-0">Total Earnings</p>
+                        <h2 class="bold">${{ total_earnings }} <span class="svg-icon svg-icon-primary svg-icon-2x"><svg
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <rect fill="var(--color-success)" opacity="0.3" x="11" y="5" width="2"
+                                            height="14" rx="1" />
+                                        <path
+                                            d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+                                            fill="var(--color-success)" fill-rule="nonzero" />
+                                    </g>
+                                </svg></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-app border rounded-lg">
+                <div class="d-flex h-100 align-items-center p-2">
+
+                    <div class="w-100 pl-4 justify-content-center align-items-center p-2">
+                        <p class="m-0">Orders Delivered</p>
+                        <h2 class="bold">{{ total_orders }} <span class="svg-icon svg-icon-primary svg-icon-2x"><svg
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <rect fill="var(--color-success)" opacity="0.3" x="11" y="5" width="2"
+                                            height="14" rx="1" />
+                                        <path
+                                            d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+                                            fill="var(--color-success)" fill-rule="nonzero" />
+                                    </g>
+                                </svg></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-app border rounded-lg">
+                <div class="d-flex h-100 align-items-center p-2">
+
+                    <div class="w-100 pl-4 justify-content-center align-items-center p-2">
+                        <p class="m-0">Registered Users</p>
+                        <h2 class="bold">{{ registered_users }} <span
+                                class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo4/dist/../src/media/svg/icons/Navigation/Arrow-up.svg--><svg
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <rect fill="var(--color-success)" opacity="0.3" x="11" y="5" width="2"
+                                            height="14" rx="1" />
+                                        <path
+                                            d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+                                            fill="var(--color-success)" fill-rule="nonzero" />
+                                    </g>
+                                </svg></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-app border rounded-lg">
+                <div class="d-flex h-100 align-items-center p-2">
+
+                    <div class="w-100 pl-4 justify-content-center align-items-center p-2">
+                        <p class="m-0">Items Published</p>
+                        <h2 class="bold">{{ items_published }} <span
+                                class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo4/dist/../src/media/svg/icons/Navigation/Arrow-up.svg--><svg
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24" />
+                                        <rect fill="var(--color-success)" opacity="0.3" x="11" y="5" width="2"
+                                            height="14" rx="1" />
+                                        <path
+                                            d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+                                            fill="var(--color-success)" fill-rule="nonzero" />
+                                    </g>
+                                </svg></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-7 pr-2">
+                <div class="card bg-app rounded border px-2">
+                    <h5 class="bold px-3 pt-3">User Gowth</h4>
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-5 pl-2">
+                <div class="card bg-app rounded border px-2">
+                    <h5 class="bold px-3 pt-3">Location Stats</h4>
+                        <div class="d-flex w-100 h-100 align-items-center justify-content-center">
+                            <img src="/static/main/img/illustrations/earth-map.jpg" class="w-100" alt="">
+                        </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+    <div class="container mt-5">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card p-4 bg-app rounded-lg border">
+                    <h3 class="bold">Sales Stats</h3>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Orders Requested</span> <span>{{ total_orders }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Orders Completed</span> <span>{{ orders_completed }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Orders Denied</span> <span>{{ orders_denied }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Orders awaiting response</span> <span>{{ orders_awaiting_response }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Earnings per month</span> <span>${{ average_earnings_per_month }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card p-4 bg-app rounded-lg border">
+                    <h3 class="bold">User Stats</h3>
+                    <div class="d-flex justify-content-between py-2">
+                        <span>Users Deleted</span> <span>{{ users_deleted }}</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const lineCtx = document.getElementById('lineChart').getContext('2d');
+
+    new Chart(lineCtx, {
+        type: "line",
+        data: {
+            labels: {{ userGrowthData.labels | safe }},
+        datasets: [{
+            label: 'Number of users',
+            backgroundColor: "rgba(5, 191, 219, 0.5)",
+            borderColor: "#05BFDB",
+            fill: true,
+            data: {{ userGrowthData.values }}
+            }]
+        },
+        options: {
+        scales: {
+            xAxes: [{
+                type: 'time',
+                time: {
+                    unit: 'month',
+                    displayFormats: {
+                        month: 'MMM YYYY'
+                    }
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    zeroLineColor: "#05BFDB",
+                    zeroLineWidth: 2,
+                    drawBorder: false
+                }
+            }]
+        },
+        elements: {
+            line: {
+                tension: 0
+            }
+        }
+    }
+    });
+</script>
+
+{% endblock %}

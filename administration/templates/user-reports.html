@@ -1,0 +1,51 @@
+{% extends 'admin-base.html' %}
+{% load static %}
+
+{% block title %}User Reports - multiverzum.com{% endblock %}
+
+{% block content %}
+
+
+<style>
+    tr:hover{
+        background-color: var(--color-gray);
+    }
+</style>
+
+<div class="container mt-2">
+
+    <div class="p-3">
+        <h2 class="bold">User Reports</h2>
+        <span class="text-muted">Hi {{ request.user.username }}, Welcome back!</span>
+    </div>
+
+
+    <div class="table-responsive mt-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Reported By</th>
+                    <th scope="col">Reported User</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for report in reports %}
+
+                <tr>
+                    <td>{{ report.user_reporting }}</td>
+                    <td>{{ report.user_reported }}</td>
+                    <td>{{ report.report_message }}</td>
+                    <td>{{ report.date_created }}</td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

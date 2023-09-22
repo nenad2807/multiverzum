@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}?rnd=30">
+    <link rel="stylesheet" href="{% static 'main/css/administration.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/footer.css' %}?rnd=30">
+    <title>{% block title %}Largest Collection of Customizable Items Online - multiverzum.com{% endblock %}</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'main/img/icons/favicon.png' %}" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <meta name="msapplication-TileImage" content="https://multiverzum.com/static/main/img/icons/thumbnail.jpg" />
+    <meta property="og:site_name" content="Multiverzum" />
+    <meta property="og:title" content="Personalize your world with out custom items - multiverzum.com" />
+    <meta property="og:description" content="Thousands of designs at your disposal" />
+    <meta property="og:image" itemprop="image" content="https://multiverzum.com/static/main/img/icons/thumbnail.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="629" />
+    <meta property="fb:app_id" content="1487782268378153">
+    <meta property="og:url" content="www.multiverzum.com" />
+
+</head>
+
+<body>
+
+
+    {% block loadingSpinner %}
+    {% include 'loading-spinner.html' %}
+    {% endblock %}
+
+
+    <div id="pageContent">
+        <div class="d-flex">
+
+            {% block sidebar %}
+            {% include 'partials/sidebar.html' %}
+            {% endblock %}
+
+
+            <div class="w-100 position-relative sidebar-margin ml-sidebar">
+
+                <div id="pageBody">
+                    {% block content %}
+
+                    {% endblock %}
+
+                    {% block footer %}
+                    {% include 'footer.html' %}
+                    {% endblock %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    <script src="/static/main/js/main.js?v=1"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(window).on('load', function () {
+            $('.loading-spinner').fadeOut('fast');
+            $('#pageBody').show();
+        });
+    </script>
+
+</body>
+
+</html>

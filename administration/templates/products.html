@@ -1,0 +1,80 @@
+{% extends 'admin-base.html' %}
+{% load static %}
+
+{% block title %}Products - multiverzum.com{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-2">
+
+    <div class="p-3">
+        <h2 class="bold">Products Overview</h2>
+        <span class="text-muted">Hi {{ request.user.username }}, Welcome back!</span>
+    </div>
+
+    <div class="row pt-3">
+        {% for item in items%}
+        <div class="col-12 col-md-6 col-lg-3 col-sm-6 col-xs-6 rounded-0 pb-1 mb-2">
+            <div class="card h-100">
+                <div class="card-img-top shadow rounded-lg h-100 d-flex flex-column flex-end">
+
+                    <div class="heart-container shadow rounded-circle position-absolute">
+                        <i style="cursor: pointer;" id="{{item.id}}" class="fa-regular fa-heart"
+                            onclick="if(`{{request.user.is_authenticated}}` == 'True'){toggleWishlistItem('{{ item.id }}')}else{$('#login-alert').show()}"></i>
+                    </div>
+
+
+                    <div id="carouselExampleControls" class="carousel slide h-100" data-ride="carousel">
+                        <div class="carousel-inner h-100 rounded-lg">
+
+                            {% for image in item.itemimage_set.all %}
+                            <div class="h-100 carousel-item{% if forloop.first %} active{% endif %}">
+                                <img class="d-block w-100 h-100 rounded-lg" src="/media/{{ image.image }}"
+                                    alt="Item image" onclick="window.location = '/item/{{ item.id }}' ">
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-2">
+                    <h5 class="card-title py-1 m-0" onclick="window.location = '/item/{{item.id}}'">{{ item.title }}
+                    </h5>
+
+                    <span class="card-seller">
+                        By {{ item.seller.username }}
+                    </span>
+
+                    {% if not item.discount_price %}
+
+                    <h3 class="card-text px-0 py-1 text-primary-darker">
+                        ${{item.price}}
+                    </h3>
+
+
+                    {% else %}
+
+                    <div class="d-flex">
+
+                        <h3 class="card-text px-0 py-1 mb-0 text-primary-darker pr-2">
+                            ${{item.discount_price}}
+                        </h3>
+
+
+                        <p class="text-muted m-0 d-flex align-items-center"
+                            style="text-decoration: line-through; font-size: 10pt;">${{item.price}}</p>
+
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,257 @@
+<style>
+    :root {
+        --sidebar-width: 250px;
+    }
+
+    #sidebar {
+        position: fixed;
+        width: var(--sidebar-width);
+        min-height: 100vh;
+        --sidebar-width: 65;
+        background-color: #20232B;
+    }
+
+    #sidebar.open {
+        display: flex;
+        --sidebar-width: 250px;
+    }
+
+    .ml-sidebar {
+        margin-left: var(--sidebar-width) !important;
+    }
+
+    .sidebar-margin {
+        min-height: 100vh;
+        margin-left: 105px;
+    }
+    .sidebar-nav-link{
+        color: #9899ac;
+    }
+
+    .sidebar-nav-link:hover {
+        color: white !important;
+        background-color: #363A3F;
+    }.sidebar-nav-link.active{
+        background-color: #363A3F !important;
+        color: white !important;
+    }
+
+    @media only screen and (max-device-width : 800px) {
+        #sidebar {
+            display: none !important;
+        }
+
+        :root {
+            --sidebar-width: 0;
+        }
+    }
+</style>
+
+<div id="sidebar" class="open flex-column flex-shrink-0 p-3 text-white">
+    <div class="w-100 p-0 pl-sm-3 logo-container">
+        <a href="/" class="d-flex align-items-center mb-4 mt-2">
+            <img class="" src="/static/main/img/icons/logo-icon.png" style="max-width: 55px;">
+        </a>
+    </div>
+
+    <ul class="nav nav-pills flex-column mb-auto">
+
+        <li>
+            <a href="/administration/dashboard"
+                class="nav-link sidebar-nav-link {% if '/dashboard' in request.path %} active{% else %}{% endif %}">
+                <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24"
+                        version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <rect fill="#fff" x="4" y="4" width="7" height="7" rx="1.5" />
+                            <path
+                                d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z"
+                                fill="#fff" opacity="0.3" />
+                        </g>
+                    </svg></span>
+                <span class="sidebar-link">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="/administration/orders"
+                class="nav-link sidebar-nav-link {% if '/orders' in request.path %} active{% endif %}">
+                <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24"
+                        version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <path
+                                d="M8,3 L8,3.5 C8,4.32842712 8.67157288,5 9.5,5 L14.5,5 C15.3284271,5 16,4.32842712 16,3.5 L16,3 L18,3 C19.1045695,3 20,3.8954305 20,5 L20,21 C20,22.1045695 19.1045695,23 18,23 L6,23 C4.8954305,23 4,22.1045695 4,21 L4,5 C4,3.8954305 4.8954305,3 6,3 L8,3 Z"
+                                fill="#fff" opacity="0.3" />
+                            <path
+                                d="M11,2 C11,1.44771525 11.4477153,1 12,1 C12.5522847,1 13,1.44771525 13,2 L14.5,2 C14.7761424,2 15,2.22385763 15,2.5 L15,3.5 C15,3.77614237 14.7761424,4 14.5,4 L9.5,4 C9.22385763,4 9,3.77614237 9,3.5 L9,2.5 C9,2.22385763 9.22385763,2 9.5,2 L11,2 Z"
+                                fill="#fff" />
+                            <rect fill="#fff" opacity="0.3" x="10" y="9" width="7" height="2" rx="1" />
+                            <rect fill="#fff" opacity="0.3" x="7" y="9" width="2" height="2" rx="1" />
+                            <rect fill="#fff" opacity="0.3" x="7" y="13" width="2" height="2" rx="1" />
+                            <rect fill="#fff" opacity="0.3" x="10" y="13" width="7" height="2" rx="1" />
+                            <rect fill="#fff" opacity="0.3" x="7" y="17" width="2" height="2" rx="1" />
+                            <rect fill="#fff" opacity="0.3" x="10" y="17" width="7" height="2" rx="1" />
+                        </g>
+                    </svg></span>
+                <span class="sidebar-link">Orders</span>
+            </a>
+        </li>
+        <li>
+            <a href="/administration/products"
+                class="nav-link sidebar-nav-link {% if '/products' in request.path %} active{% endif %}">
+                <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24"
+                        version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <path
+                                d="M20.4061385,6.73606154 C20.7672665,6.89656288 21,7.25468437 21,7.64987309 L21,16.4115967 C21,16.7747638 20.8031081,17.1093844 20.4856429,17.2857539 L12.4856429,21.7301984 C12.1836204,21.8979887 11.8163796,21.8979887 11.5143571,21.7301984 L3.51435707,17.2857539 C3.19689188,17.1093844 3,16.7747638 3,16.4115967 L3,7.64987309 C3,7.25468437 3.23273352,6.89656288 3.59386153,6.73606154 L11.5938615,3.18050598 C11.8524269,3.06558805 12.1475731,3.06558805 12.4061385,3.18050598 L20.4061385,6.73606154 Z"
+                                fill="#fff" opacity="0.3" />
+                            <polygon fill="#fff"
+                                points="14.9671522 4.22441676 7.5999999 8.31727912 7.5999999 12.9056825 9.5999999 13.9056825 9.5999999 9.49408582 17.25507 5.24126912" />
+                        </g>
+                    </svg></span>
+
+                <span class="sidebar-link">Products</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a href="/administration/customers"
+                class="nav-link sidebar-nav-link {% if '/customers' in request.path %} active{% endif %}">
+                <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24"
+                        version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon points="0 0 24 0 24 24 0 24" />
+                            <path
+                                d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                fill="#fff" fill-rule="nonzero" opacity="0.3" />
+                            <path
+                                d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                fill="#fff" fill-rule="nonzero" />
+                        </g>
+                    </svg></span>
+
+                <span class="sidebar-link">Customers</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a href="/administration/support"
+                class="nav-link sidebar-nav-link {% if '/support' in request.path %} active{% endif %}">
+                <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24"
+                        version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <circle fill="#fff" opacity="0.3" cx="12" cy="12" r="10" />
+                            <path
+                                d="M12,16 C12.5522847,16 13,16.4477153 13,17 C13,17.5522847 12.5522847,18 12,18 C11.4477153,18 11,17.5522847 11,17 C11,16.4477153 11.4477153,16 12,16 Z M10.591,14.868 L10.591,13.209 L11.851,13.209 C13.447,13.209 14.602,11.991 14.602,10.395 C14.602,8.799 13.447,7.581 11.851,7.581 C10.234,7.581 9.121,8.799 9.121,10.395 L7.336,10.395 C7.336,7.875 9.31,5.922 11.851,5.922 C14.392,5.922 16.387,7.875 16.387,10.395 C16.387,12.915 14.392,14.868 11.851,14.868 L10.591,14.868 Z"
+                                fill="#fff" />
+                        </g>
+                    </svg></span>
+
+                <span class="sidebar-link">Support</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a href="/administration/highest-performing"
+                class="nav-link sidebar-nav-link {% if '/highest-performing' in request.path %} active{% endif %}">
+                <span
+                    class="svg-icon svg-icon-primary svg-icon-2x"><svg
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                        height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <path
+                                d="M14,7 C13.6666667,10.3333333 12.6666667,12.1167764 11,12.3503292 C11,12.3503292 12.5,6.5 10.5,3.5 C10.5,3.5 10.287918,6.71444735 8.14498739,10.5717225 C7.14049032,12.3798172 6,13.5986793 6,16 C6,19.428689 9.51143904,21.2006583 12.0057195,21.2006583 C14.5,21.2006583 18,20.0006172 18,15.8004732 C18,14.0733981 16.6666667,11.1399071 14,7 Z"
+                                fill="#fff" />
+                        </g>
+                    </svg></span>
+
+                <span class="sidebar-link">Highest Performing</span>
+
+            </a>
+        </li>
+
+        <li>
+            <a href="/administration/reports"
+                class="nav-link sidebar-nav-link {% if '/reports' in request.path %} active{% endif %}">
+                <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24"
+                        version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <circle fill="#fff" opacity="0.3" cx="12" cy="12" r="10" />
+                            <rect fill="#fff" x="11" y="7" width="2" height="8" rx="1" />
+                            <rect fill="#fff" x="11" y="16" width="2" height="2" rx="1" />
+                        </g>
+                    </svg></span>
+
+                <span class="sidebar-link">User Reports</span>
+
+            </a>
+        </li>
+
+
+        <li>
+            <a href="/administration/deleted"
+                class="nav-link sidebar-nav-link {% if '/deleted' in request.path %} active{% endif %}">
+                <span class="svg-icon svg-icon-primary svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24"
+                        version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <path
+                                d="M6,8 L18,8 L17.106535,19.6150447 C17.04642,20.3965405 16.3947578,21 15.6109533,21 L8.38904671,21 C7.60524225,21 6.95358004,20.3965405 6.89346498,19.6150447 L6,8 Z M8,10 L8.45438229,14.0894406 L15.5517885,14.0339036 L16,10 L8,10 Z"
+                                fill="#fff" fill-rule="nonzero" />
+                            <path
+                                d="M14,4.5 L14,3.5 C14,3.22385763 13.7761424,3 13.5,3 L10.5,3 C10.2238576,3 10,3.22385763 10,3.5 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
+                                fill="#fff" opacity="0.3" />
+                        </g>
+                    </svg></span>
+
+                <span class="sidebar-link">Deleted Items</span>
+
+            </a>
+        </li>
+
+
+    </ul>
+    <hr>
+    <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ request.user.profile_image.url }}" alt="" width="35" height="35" class="rounded-circle"
+                style="object-fit: cover">
+            <strong class="pl-3">{{ request.user.username }}</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="/seller/profile/{{ request.user.username }}">My profile</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="/user/logout">Sign out</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<script>
+    function toggleSidebar() {
+        $("#sidebar").toggleClass("open");
+        $(".sidebar-margin").toggleClass("ml-sidebar");
+        $(".sidebar-link").toggleClass("d-none");
+        $(".dropdown").toggleClass("d-none");
+        $(".logo-container").toggleClass("pl-sm-3");
+
+
+    }
+</script>

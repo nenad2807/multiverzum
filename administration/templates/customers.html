@@ -1,0 +1,109 @@
+{% extends 'admin-base.html' %}
+{% load static %}
+
+{% block title %}Customers - multiverzum.com{% endblock %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+<style>
+    tr:hover {
+        background-color: var(--color-gray) !important;
+    }
+
+    #customer-table_wrapper {
+        max-width: 920px !important;
+        margin: auto;
+        overflow: scroll;
+    }
+
+    #customer-table th,
+    td {
+        white-space: nowrap;
+    }
+</style>
+
+<div class="container mt-2">
+
+    <div class="p-3">
+        <h2 class="bold">Customers Overview</h2>
+        <span class="text-muted">Hi {{ request.user.username }}, Welcome back!</span>
+    </div>
+
+    <table id="customer-table" class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for user in users %}
+
+            <tr>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    {% if user.is_admin %}
+                    Admin
+                    {% elif user.is_seller %}
+                    Seller
+                    {% else %}
+                    Customer
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="/seller/profile/{{ user.username }}" class="btn btn-basic bg-gray rounded">View profile</a>
+                    <button class="btn btn-basic bg-gray rounded text-danger" onclick="removeUser('{{ user.id }}')">Remove
+                        user</button>
+                </td>
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#customer-table').DataTable({
+            "scrollX": true
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
+
+
+<script>
+
+    function removeUser(user_id) {
+        $("#confirmDeleteModal").modal("show");
+        $("#userIdInput").val(user_id);
+    }
+
+
+
+</script>
+
+
+
+
+{% block confirmDeleteModal %}
+{% include 'partials/confirm-user-removal-modal.html' %}
+{% endblock %}
+
+{% endblock %}
