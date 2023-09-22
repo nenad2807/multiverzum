@@ -1,0 +1,27 @@
+TODO:
+
+- personalizacija prijedloga na home pageu
+- paypal placanje
+- dodaj is_available = 0 na artkle koje ne mozemo nabaviti lako
+- likes artikala TBD
+- Item quantities Phase 2
+- paginacija
+- Google Login DBT
+- search autocomplete
+- promijena tipa profila na seller i nakon kreacije user profila
+
+BUGS:
+
+- kada editujem profil i stavim vec postojeci email ne izbaci mi alert
+- Pri objavi artikala korisnik moze samo da preskoci odredjene korake tako sto promijeni link
+- seler moze naruciti sam svoj artikal
+- you should not be able to report your own user
+
+CHECKS:
+
+- Zapitaj se da li mislis da si sve uradio na najbolji nacin. Da li se nesto moglo pametnije uraditi.
+- Da li postoje neki problemi sa skalabilnosti?
+
+
+Optimizacija:
+zamijeniti svaki border-0
