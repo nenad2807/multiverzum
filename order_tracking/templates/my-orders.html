@@ -1,0 +1,76 @@
+{% extends 'userBase.html' %}
+{% load static %}
+{% block title %}My Orders - multiverzum.com{% endblock %}
+
+{% block content %}
+
+<section>
+  <div class="container mt-1">
+
+    <div class="p-3">
+      <h2 class="bold">Order Tracking</h2>
+      <span class="text-muted">Hi {{ request.user.username }}, you can track your orders right here!</span>
+    </div>
+
+
+
+    {% if not orders %}
+
+    <div class="d-flex py-5 h-100 w-100 justify-content-center align-items-center">
+      <div class="text-center">
+        <img src="/static/main/img/illustrations/no-search-results.png" width="280px" alt="">
+        <br><br>
+        <h2 class="bold mb-0">You haven't made any orders yet!</h2>
+        <p class="text-muted text-sm text-center m-auto">Explore our customizable products</p>
+        <br>
+        <a class="btn btn-primary border-0 text-white rounded-lg p-2 px-3" href="/">Shop Now</a>
+      </div>
+
+
+    </div>
+
+    {% else %}
+
+    <div class="row pt-3">
+      {% for item in orders%}
+      <div class="col-12 col-md-6 col-lg-3 col-sm-6 col-xs-6 rounded-0 pb-1 mb-2">
+        <div class="card h-100">
+          <div class="card-img-top shadow rounded-lg h-100 d-flex flex-column flex-end">
+
+            <div id="carouselExampleControls" class="carousel slide h-100" data-ride="carousel">
+              <div class="carousel-inner h-100 rounded-lg">
+
+                {% for image in item.item.itemimage_set.all %}
+                <div class="h-100 carousel-item{% if forloop.first %} active{% endif %}">
+                  <img class="d-block w-100 h-100 rounded-lg" src="/media/{{ image.image }}" alt="Item image"
+                    onclick="window.location = '/order-tracking/order_id={{item.id}}' ">
+                </div>
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-2">
+            <h5 class="card-title py-1 m-0" onclick="window.location = '/order-tracking/order_id={{item.id}}'">
+              {{ item.item.title }}</h5>
+
+
+          </div>
+
+          <div class="text-center">
+            <a class="btn btn-dark border" href="/order-tracking/order_id={{item.id}}">Track order</a>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% endif %}
+
+
+  </div>
+</section>
+
+
+{% endblock %}
