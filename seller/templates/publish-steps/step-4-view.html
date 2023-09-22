@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .selected-filters-container {
+        max-width: 600px;
+    }
+</style>
+
+
+<div class="publishPageContainer bg-app mt-1 pb-5 w-100">
+    <div class="container bg-app rounded p-5">
+
+        <h2>Customization</h2>
+        <label class="text-muted">Each filter you select will show up on your item's page
+            and it will enable the customer to customize the item
+        </label><br><br>
+
+
+        {% block filters %}
+        {% include 'partials/filters.html' %}
+        {% endblock %}
+
+
+
+
+    </div>
+
+
+</div>
+
+<div class="w-100 bg-app mt-1">
+
+    {% if not 'filter_list' in request.session %}
+    <div class="text-center p-4 text-muted">
+        <span>No filters selected</span>
+
+    </div>
+
+    {% endif %}
+
+
+</div>
+
+
+<div class="w-100 bg-app">
+    {% for selected_filter in selected_filters %}
+    {% include 'filters/'|add:selected_filter.html_template_name %}
+    {% endfor %}
+
+</div>
+
+<div class="w-100 bg-app mt-1">
+
+    <div class="py-4 text-center">
+        <a type="button" href="/seller/publish/step=3" class="btn btn-basic bg-gray border-0 my-3 px-5 rounded-lg">Back
+        </a>
+        <a href="/seller/publish/step=5" name="submit" id="submit_button"
+            class="btn btn-primary border-0 my-3 px-5 py-2 mx-0 rounded-lg">
+            Continue
+        </a>
+    </div>
+</div>
+
+<div class="w-100 bg-app">
+    <form id="filters-form" method="post" class="m-auto">
+        {% csrf_token %}
+
+        <input type="hidden" id="filter_id" name="filter_id">
+    </form>
+</div>
+
+
+
+<script>
+
+    $('#addFilterButton').click(function () {
+        $('#filterModal').modal('show');
+    });
+
+    function addFilter(id) {
+        filter_id = id;
+        $('#filter_id').val(filter_id);
+        $('#filterModal').modal('hide');
+        $('.loading-spinner').show();
+        $('#pageBody').hide();
+        var form = document.getElementById('filters-form');
+        form.submit();
+    }
+
+</script>
+
+{% endblock %}

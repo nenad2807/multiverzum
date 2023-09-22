@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    ::file-selector-button {
+        display: none;
+    }
+
+
+    .btn-group-toggle label {
+        cursor: pointer;
+    }
+
+    .btn-group-toggle .active {
+        border-color: var(--color-dark) !important;
+        border-width: 1px !important;
+    }
+</style>
+
+<div class="publishPageContainer bg-app mt-1 pb-5 w-100">
+    <form id="publish-form" method="post" style="max-width: 1100px !important;" class="m-auto">
+        {% csrf_token %}
+        <div class="container bg-app rounded p-5">
+
+            <h2>Condition and quantity</h2>
+            <br>
+            <div class="btn-group-toggle text-center m-auto" data-toggle="buttons" name="item_condition">
+                <label class="text-muted">Select item condition:</label><br> <br>
+                <label class="btn btn-light py-2 px-4 active">
+                    <input type="radio" name="item_condition" id="new" autocomplete="off" value="New" checked>
+                    New
+                </label>
+                <label class="btn btn-light py-2 px-4">
+                    <input type="radio" name="item_condition" id="used" autocomplete="off" value="Used"> Used
+                </label>
+            </div>
+
+            <br>
+
+            <div class="btn-group-toggle text-center m-auto" data-toggle="buttons" name="multiple_quantities">
+                <label class="text-muted">Is this item available in multiple quantities:</label><br> <br>
+                <label class="btn btn-light py-2 px-4 active">
+                    <input type="radio" name="multiple_quantities" id="new" autocomplete="off" value="true" checked>
+                    Yes
+                </label>
+                <label class="btn btn-light py-2 px-4">
+                    <input type="radio" name="multiple_quantities" id="used" autocomplete="off" value="false"> No, just one
+                </label>
+            </div>
+
+            <br>
+
+        </div>
+        <div class="py-4 text-center">
+            <a href="/seller/publish" type="button" class="btn btn-basic bg-gray border-0 my-3 px-5 rounded-lg">Back
+            </a>
+            <button type="submit" name="submit" id="submit_button"
+                class="btn btn-primary border-0 my-3 px-5 rounded-lg">Next
+            </button>
+        </div>
+    </form>
+
+</div>
+
+
+<script>
+    $('form').on('submit', function () {
+
+        $('.loading-spinner').show();
+        $('#pageBody').hide();
+
+    });
+
+</script>
+
+
+{% endblock %}

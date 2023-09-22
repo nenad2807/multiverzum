@@ -1,0 +1,66 @@
+<style>
+    #filterList .list-group-item {
+        cursor: pointer;
+        color: var(--text-color) !important;
+    }
+
+    #filterList .list-group-item:hover {
+        background-color: var(--body-background) !important;
+    }
+
+    #addFilterButton{
+        background-color: var(--text-color) !important;
+        color: var(--color-oposite) !important;
+    }
+</style>
+
+<div class="menu-filters pt-5 w-50 m-auto">
+
+    <button id="addFilterButton"
+        class="btn btn-basic rounded-lg p-2 px-5 my-2 position-relative border-0 text-left m-auto d-block">
+        Add Filter
+        <span class="plus-sign">+</span>
+    </button>
+
+</div>
+
+
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-app">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModalLabel">Add Filter</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control border-0" id="filterSearch"
+                            placeholder="Search for filters...">
+                    </div>
+                    <div class="list-group" id="filterList">
+                        {% for filter in filters %}
+                        <span class="list-group-item border-0 d-flex" onclick="addFilter('{{ filter.id }}')">
+                            {{ filter.title }}
+                            <div class="w-100 text-right">
+                                {% if not filter.id|stringformat:"s" in request.session.filter_list %}
+                                <i class="fa fa-plus"></i>
+                                {% else %}
+                                <i class="fa fa-minus"></i>
+                                {% endif %}
+                            </div>
+                        </span>
+                        {% endfor %}
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary border-0" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

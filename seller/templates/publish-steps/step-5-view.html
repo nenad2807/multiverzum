@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    ::file-selector-button {
+        display: none;
+    }
+    .upload-image-field {
+        background-color: var(--color-gray) !important;
+        color: var(--text-color) !important;
+        border: 1px dashed gray;
+    }
+
+    #imagePreview img{
+        object-fit: cover;
+        max-height: 200px;
+    }
+</style>
+
+
+
+<div class="publishPageContainer bg-app mt-1 pb-5 w-100">
+    <form id="publish-form" method="post" enctype="multipart/form-data" style="max-width: 1100px !important;"
+        class="m-auto">
+        {% csrf_token %}
+        <div class="container py-5 bg-app">
+            <h2 class="bold">Upload Images</h2>
+            <label class="text-muted">It is recommended to upload more than one photo per product</label><br> <br>
+
+            <div class="row">
+
+                <div class="col-md-12 px-3">
+
+                    <div class="m-auto text-center">
+                        <div id="imagePreview" class="row my-2"></div>
+
+                        <input type="file" class="form-control inputfile my-2 d-none" name="images" size="80" multiple
+                            id="imagesInput" required>
+
+                        <label class="w-100 pointer upload-image-field rounded-lg py-4" for="imagesInput"><i
+                                class="fa fa-plus"></i>
+                            Drag or click to add image</label>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="py-4 text-center">
+            <a type="button" href="/seller/publish/step=4"
+                class="btn btn-basic bg-gray border-0 my-3 px-5 rounded-lg">Back
+            </a>
+            <button type="submit" name="submit" id="submit_button"
+                class="btn btn-primary border-0 my-3 px-5 rounded-lg">
+                Publish now
+            </button>
+        </div>
+    </form>
+
+</div>
+
+
+
+<script>
+    const myForm = document.querySelector('#publish-form');
+
+    myForm.addEventListener('submit', (event) => {
+        $('.loading-spinner').show();
+        $('#pageBody').hide();
+    });
+
+</script>
+
+
+<script src="/static/main/js/image-preview.js"></script>
+
+
+
+{% endblock %}

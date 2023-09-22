@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+<style>
+    select.form-select option {
+        padding: 15px;
+    }
+
+    .btn-group-toggle label {
+        cursor: pointer;
+    }
+
+    .btn-group-toggle .active {
+        border-color: black !important;
+        border-width: 1px !important;
+    }
+</style>
+
+<div class="publishPageContainer bg-app mt-1 pb-5 w-100">
+    <form id="publish-form" method="post" style="max-width: 1100px !important;" class="m-auto">
+
+        {% csrf_token %}
+        <div class="container bg-app rounded p-5">
+            <h2>Publish new item</h2>
+            <label class="text-muted">Announce your latest offerings to the world</label>
+            <br><br>
+            <div class="row">
+                <div class="col-md-6 px-3 pt-3">
+                    <label>Title</label><br>
+                    <input type="text" class="border-0 form-control w-100" name="title" id="name" required></input><br>
+                    <label>Price</label><br>
+                    <div class="row">
+                        <div class="col-10">
+                            <input type="number" class="form-control w-100 border-0" step=".01" name="price" id="cost"
+                                required>
+                        </div>
+                        <div class="col-2 pl-0">
+                            <input type="text" class="form-control border-0 text-center" readonly value="$">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6 px-3 pt-3">
+
+
+                    <label>Category</label><br>
+                    <select class="form-select form-control border-0" aria-label="Pick category" name="category"
+                        id="category" required>
+                        <option value="">-- Select a category --</option>
+
+                        {% for parent_category, subcategories in grouped_categories.items %}
+                        <optgroup class="bg-app" label="{{ parent_category.name }}">
+
+                            {% for subcategory in subcategories %}
+                            <option class="bg-app form-select" value="{{ subcategory.id }}">{{ subcategory.name }}
+                            </option>
+                            {% endfor %}
+
+                        </optgroup>
+                        {% endfor %}
+
+                    </select><br>
+                    <label>Tags (optional)</label><br>
+                    <input type="text" class="border-0 form-control w-100" name="tags" id="tags-input"></input>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="py-4 text-center">
+            <button type="submit" name="submit" id="submit_button"
+                class="btn btn-primary border-0 my-3 px-5 rounded-lg">Continue</button>
+        </div>
+
+    </form>
+</div>
+
+
+<script>
+
+    $('form').on('submit', function () {
+
+        $('.loading-spinner').show();
+        $('#pageBody').hide();
+
+    });
+
+</script>
+
+{% endblock %}

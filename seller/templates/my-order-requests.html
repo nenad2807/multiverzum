@@ -1,0 +1,154 @@
+{% extends 'userBase.html' %}
+{% load static %}
+{% block title %}My Order Requests - multiverzum.com{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="container mt-1">
+
+        <h4 class="py-3">Order Requests</h4>
+
+        {% if not orders %}
+
+        <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+            <div class="text-center">
+                <img src="/static/main/img/illustrations/no-search-results.png" style="max-width: 280px;" alt="">
+                <div class="text-center" style="max-width: 450px;">
+                    <h1 class="text-center bold">No requests yet</h1>
+                    <span>Try checking our <a href="/exceptions/feature-still-in-development">instructions</a> on how to
+                        get more attention from
+                        customers and our algorithm.
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+        <div class="row">
+            {% for item in orders%}
+            <div class="col-12 col-md-6 col-lg-3 col-sm-6 col-xs-6 rounded-0 pb-1 mb-2">
+                <div class="card h-100">
+                  <div class="card-img-top shadow rounded-lg h-100 d-flex flex-column flex-end">
+        
+                    <div id="carouselExampleControls" class="carousel slide h-100" data-ride="carousel">
+                      <div class="carousel-inner h-100 rounded-lg">
+        
+                        {% for image in item.item.itemimage_set.all %}
+                        <div class="h-100 carousel-item{% if forloop.first %} active{% endif %}">
+                          <img class="d-block w-100 h-100 rounded-lg" src="/media/{{ image.image }}" alt="Item image"
+                            onclick="window.location = '/item/{{ item.item.id }}' ">
+                        </div>
+                        {% endfor %}
+        
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body p-2">
+                    <h5 class="card-title py-1 m-0" onclick="window.location = '/item/{{item.item.id}}'">{{ item.item.title }}</h5>
+        
+                    {% if not item.discount_price %}
+        
+                    <h3 class="card-text px-0 py-1 text-primary-darker">
+                      ${{item.item.price}}
+                    </h3>
+        
+        
+                    {% else %}
+        
+                    <div class="d-flex">
+        
+                      <h3 class="card-text px-0 py-1 mb-0 text-primary-darker pr-2">
+                        ${{item.item.discount_price}}
+                      </h3>
+        
+        
+                      <p class="text-muted m-0 d-flex align-items-center"
+                        style="text-decoration: line-through; font-size: 10pt;">${{item.item.price}}</p>
+                    </div>
+        
+                    {% endif %}
+
+                    <form method="post">
+                        <div class="d-flex">
+                            {% csrf_token %}
+
+                            <input type="hidden" value="{{item.item.id}}" name="item_id">
+
+                            <div class="pr-1 w-100">
+                                <button type="submit" class="accept-oder-btn btn w-100 btn-success rounded-lg"
+                                    name="allow" value="1">Accept</button>
+                            </div>
+                            <div class="pl-1 w-100">
+                                <button type="submit" type="button" name="deny" value="1"
+                                    class="btn w-100 btn-danger rounded-lg bg-danger"
+                                    onclick="item_id = '{{item.id}}'">Deny</button>
+                            </div>
+
+
+                        </div>
+                    </form>
+        
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<script>
+
+    let item_id = ''
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+
+
+    function onDeleteAction() {
+
+        const csrftoken = getCookie('csrftoken');
+
+        $.ajax({
+            type: "POST",
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            url: "/user/delete-item",
+            data: {
+                'item_id': item_id,
+            },
+            success: function (response) {
+                location.reload();
+            }
+        })
+
+    }
+
+</script>
+
+
+
+
+<script>
+  playNotificationSound();
+</script>
+
+
+
+{% endblock %}
